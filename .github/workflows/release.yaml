@@ -19,7 +19,7 @@ jobs:
       changed_charts: ${{ steps.chart_releaser.outputs.changed_charts }}
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
         with:
           fetch-depth: 0
 
@@ -63,7 +63,7 @@ jobs:
     needs: release
     steps:
       - name: Checkout Code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Get Helm Chart versions
         id: get_chart_versions
