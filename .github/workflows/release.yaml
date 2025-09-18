@@ -75,6 +75,6 @@ jobs:
         uses: peter-evans/repository-dispatch@ff45666b9427631e3450c54a1bcbee4d9ff4d7c0 #v3.0.0
         with:
           token: ${{ secrets.REPO_ACCESS_TOKEN }}
-          repository: TibiaData/tibiadata-argocd-app-of-apps
+          repository: tibiadata/tibiadata-argocd-app-of-apps
           event-type: bump-tibiadata-helm-chart-versions
           client-payload: '{"chart_name": "${{ steps.get_chart_versions.outputs.name }}", "chart_version": "${{ steps.get_chart_versions.outputs.version }}"}'
