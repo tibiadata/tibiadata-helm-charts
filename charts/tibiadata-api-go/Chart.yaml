@@ -10,8 +10,8 @@ maintainers:
     url: https://tobiasehlert.github.io
     email: tobias@tibiadata.com
 sources:
-  - https://github.com/TibiaData/tibiadata-api-go
-  - https://github.com/TibiaData/tibiadata-helm-charts
+  - https://github.com/tibiadata/tibiadata-api-go
+  - https://github.com/tibiadata/tibiadata-helm-charts
 keywords:
   - api
   - tibia
@@ -19,5 +19,5 @@ keywords:
   - tibiadata-api
   - tibiadata-api-go
 type: application
-version: 1.2.16
+version: 1.2.17
 appVersion: 4.4.0

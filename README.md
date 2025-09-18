@@ -1,7 +1,7 @@
 # TibiaData Helm Charts
 
-[![Release Status](https://github.com/TibiaData/tibiadata-helm-charts/actions/workflows/release.yaml/badge.svg?branch=main)](https://github.com/TibiaData/tibiadata-helm-charts/actions)
-[![GitHub license](https://img.shields.io/github/license/TibiaData/tibiadata-helm-charts)](https://github.com/TibiaData/tibiadata-helm-charts/blob/main/LICENSE)
+[![Release Status](https://github.com/tibiadata/tibiadata-helm-charts/actions/workflows/release.yaml/badge.svg?branch=main)](https://github.com/tibiadata/tibiadata-helm-charts/actions)
+[![GitHub license](https://img.shields.io/github/license/tibiadata/tibiadata-helm-charts)](https://github.com/tibiadata/tibiadata-helm-charts/blob/main/LICENSE)
 
 TibiaData Helm charts for deploying into Kubernetes.
 
@@ -25,5 +25,5 @@ Tibia is a registered trademark of [CipSoft GmbH](https://www.cipsoft.com/en/). 
 
 ## Credits
 
-- Authors: [Tobias Lindberg](https://github.com/tobiasehlert) – [List of contributors](https://github.com/TibiaData/tibiadata-helm-charts/graphs/contributors)
+- Authors: [Tobias Lindberg](https://github.com/tobiasehlert) – [List of contributors](https://github.com/tibiadata/tibiadata-helm-charts/graphs/contributors)
 - Distributed under [MIT License](LICENSE)
