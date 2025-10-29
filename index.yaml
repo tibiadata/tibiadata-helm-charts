@@ -2,6 +2,33 @@ apiVersion: v1
 entries:
   tibiadata-api-go:
   - apiVersion: v2
+    appVersion: 4.6.0
+    created: "2025-10-29T06:10:40.713727063Z"
+    description: A Helm chart to deploy TibiaData API Go application.
+    digest: 83f66431decedaa26ac39599f792fcf58bfbf503367dd8b406306b05c83a65cc
+    home: https://github.com/tibiadata
+    icon: https://avatars.githubusercontent.com/u/45961610
+    keywords:
+    - api
+    - tibia
+    - tibiadata
+    - tibiadata-api
+    - tibiadata-api-go
+    maintainers:
+    - name: TibiaData
+      url: https://tibiadata.com
+    - email: tobias@tibiadata.com
+      name: tobiasehlert
+      url: https://tobiasehlert.github.io
+    name: tibiadata-api-go
+    sources:
+    - https://github.com/tibiadata/tibiadata-api-go
+    - https://github.com/tibiadata/tibiadata-helm-charts
+    type: application
+    urls:
+    - https://github.com/tibiadata/tibiadata-helm-charts/releases/download/tibiadata-api-go-1.2.20/tibiadata-api-go-1.2.20.tgz
+    version: 1.2.20
+  - apiVersion: v2
     appVersion: 4.5.0
     created: "2025-09-22T09:12:19.298896047Z"
     description: A Helm chart to deploy TibiaData API Go application.
@@ -946,4 +973,4 @@ entries:
     urls:
     - https://github.com/TibiaData/tibiadata-helm-charts/releases/download/tibiadata-api-go-0.1.0/tibiadata-api-go-0.1.0.tgz
     version: 0.1.0
-generated: "2025-09-22T09:12:19.299237177Z"
+generated: "2025-10-29T06:10:40.714078961Z"
