@@ -29,7 +29,7 @@ jobs:
           version-fragment: patch
 
       - name: Update Chart versions
-        uses: fjogeleit/yaml-update-action@04ff6ec06568fd21197db746472e36cc425de850 #v0.16.1
+        uses: fjogeleit/yaml-update-action@dffe9a5223d84653c13374032382f6bb5de8e5ef #v0.17.0
         with:
           branch: bump/${{ github.event.client_payload.chart_name }}/${{ github.event.client_payload.release_version }}
           masterBranchName: ${{ github.event.repository.default_branch }}
