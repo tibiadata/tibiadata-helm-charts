@@ -59,6 +59,9 @@ jobs:
           done
 
   argocd:
+    permissions:
+      contents: write
+
     runs-on: ubuntu-latest
     needs: release
     steps:
