@@ -74,10 +74,25 @@ spec:
             {{- if .Values.env }}
             {{- toYaml .Values.env | nindent 12 }}
             {{- end }}
-          {{- if .Values.configMap.create }}
+            {{- if and .Values.secret.enabled .Values.secret.env }}
+            {{- range .Values.secret.env }}
+            - name: {{ .name }}
+              valueFrom:
+                secretKeyRef:
+                  name: {{ $.Values.secret.name }}
+                  key: {{ .key }}
+            {{- end }}
+            {{- end }}
+          {{- if or .Values.configMap.create (and .Values.secret.enabled (not .Values.secret.env)) }}
           envFrom:
+            {{- if .Values.configMap.create }}
             - configMapRef:
                 name: {{ include "tibiadata-api-go.fullname" . }}
+            {{- end }}
+            {{- if and .Values.secret.enabled (not .Values.secret.env) }}
+            - secretRef:
+                name: {{ .Values.secret.name }}
+            {{- end }}
           {{- end }}
       {{- with .Values.nodeSelector }}
       nodeSelector:

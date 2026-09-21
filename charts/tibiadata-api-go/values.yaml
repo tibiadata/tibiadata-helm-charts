@@ -39,6 +39,21 @@ configMap:
 
 env: []
 
+# Reference a Kubernetes Secret that already exists in the release namespace.
+# This chart never creates or manages the Secret's contents (e.g. TIBIA_FANSITEAPI_TOKEN) --
+# create/populate it out-of-band (kubectl, GitOps + sealed-secrets/SOPS, external-secrets, etc.)
+# before installing/upgrading the release with this enabled.
+secret:
+  enabled: false
+  # Name of the pre-existing Secret in the same namespace as the release.
+  name: ""
+  # Optional list of secret keys to expose as explicit environment variables.
+  # If left empty, all keys in the Secret are loaded automatically via envFrom.
+  env:
+    []
+    # - name: TIBIA_FANSITEAPI_TOKEN
+    #   key: TIBIA_FANSITEAPI_TOKEN
+
 podAnnotations: {}
 
 podSecurityContext:
