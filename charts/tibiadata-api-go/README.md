@@ -47,20 +47,21 @@ If neither tag or digest is specified, the `appVersion` of the chart is used as 
 
 ### secret
 
-Reference an existing Kubernetes `Secret` for sensitive values (e.g. `TIBIA_FANSITEAPI_TOKEN`).
-This chart never creates or manages the Secret's contents — create/populate it yourself
-out-of-band (`kubectl`, a GitOps secret tool, external-secrets, etc.) before installing or
-upgrading the release with this enabled:
+Reference an existing Kubernetes `Secret` for any sensitive values the app needs (e.g. an
+API token such as `TIBIA_FANSITEAPI_TOKEN`, credentials, etc.). This chart never creates or
+manages the Secret's contents — create/populate it yourself out-of-band (`kubectl`, a GitOps
+secret tool, external-secrets, etc.) before installing or upgrading the release with this
+enabled. The Secret can hold as many keys as you like; it isn't tied to any specific value:
 
 ```console
-kubectl create secret generic tibiadata-api-go-fansite-token \
+kubectl create secret generic tibiadata-api-go-secrets \
   --from-literal=TIBIA_FANSITEAPI_TOKEN=xxxxxxxx
 ```
 
 ```yaml
 secret:
   enabled: true
-  name: tibiadata-api-go-fansite-token
+  name: tibiadata-api-go-secrets
 ```
 
 By default all keys in the Secret are loaded as environment variables (via `envFrom`). To load
@@ -69,7 +70,7 @@ only specific keys, or to rename them, set `secret.env`:
 ```yaml
 secret:
   enabled: true
-  name: tibiadata-api-go-fansite-token
+  name: tibiadata-api-go-secrets
   env:
     - name: TIBIA_FANSITEAPI_TOKEN
       key: TIBIA_FANSITEAPI_TOKEN
