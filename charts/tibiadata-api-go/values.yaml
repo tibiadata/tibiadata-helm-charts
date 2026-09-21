@@ -39,28 +39,14 @@ configMap:
 
 env: []
 
-# Reference a Kubernetes Secret containing sensitive values the app needs (e.g. an API
-# token such as TIBIA_FANSITEAPI_TOKEN). By default (secret.create: false) this chart never
-# creates or manages the Secret's contents -- create/populate it out-of-band (kubectl, GitOps +
-# sealed-secrets/SOPS, external-secrets, etc.) before installing/upgrading the release with
-# this enabled.
+# Reference a Kubernetes Secret that already exists in the release namespace.
+# This chart never creates or manages the Secret's contents (e.g. TIBIA_FANSITEAPI_TOKEN) --
+# create/populate it out-of-band (kubectl, GitOps + sealed-secrets/SOPS, external-secrets, etc.)
+# before installing/upgrading the release with this enabled.
 secret:
   enabled: false
-  # Name of the Secret in the same namespace as the release (pre-existing, or to be created --
-  # see secret.create below).
+  # Name of the pre-existing Secret in the same namespace as the release.
   name: ""
-  # If true, the chart creates the Secret when it doesn't already exist yet, seeded with empty
-  # placeholder values for each key in secret.keys -- so the release can install successfully
-  # without a separate manual `kubectl create secret` step. It never overwrites an existing
-  # Secret's data on subsequent upgrades, and the Secret is annotated with
-  # "helm.sh/resource-policy: keep" so it survives `helm uninstall`. You still need to populate
-  # the real value(s) yourself, e.g. `kubectl edit secret <name>`.
-  create: false
-  # Key names to seed as empty placeholders when secret.create creates a new Secret. Only used
-  # on first creation; ignored once the Secret already exists.
-  keys:
-    []
-    # - TIBIA_FANSITEAPI_TOKEN
   # Optional list of secret keys to expose as explicit environment variables.
   # If left empty, all keys in the Secret are loaded automatically via envFrom.
   env:
