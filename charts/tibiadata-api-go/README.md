@@ -76,6 +76,39 @@ secret:
       key: TIBIA_FANSITEAPI_TOKEN
 ```
 
+#### Letting the chart create the Secret
+
+If you'd rather not run a separate `kubectl create secret` before the first install, set
+`secret.create: true`. The chart then creates the Secret itself, but only as an empty
+placeholder (one blank-value key per entry in `secret.keys`) so the release installs cleanly
+and the pod's `envFrom`/`secretKeyRef` references resolve:
+
+```yaml
+secret:
+  enabled: true
+  create: true
+  name: tibiadata-api-go-secrets
+  keys:
+    - TIBIA_FANSITEAPI_TOKEN
+```
+
+After installing, populate the real value(s) yourself, e.g.:
+
+```console
+kubectl edit secret tibiadata-api-go-secrets
+```
+
+This is safe to leave enabled across upgrades: the template looks up the Secret's current data
+first and re-emits it unchanged if it already exists, so `helm upgrade` never clobbers values
+you've since populated. The Secret is also annotated with `helm.sh/resource-policy: keep`, so
+it survives `helm uninstall` (and won't be deleted if you later set `secret.create: false`
+again).
+
+Note: `secret.create`'s existence check relies on Helm's `lookup` function, which only works
+against a live cluster. It always renders as "not yet existing" (i.e. the empty-placeholder
+branch) under `helm template` or `helm lint` run without a cluster context — this is expected
+and does not affect real installs/upgrades.
+
 Note: since the Secret's content is managed outside Helm, upgrading the release does not
 detect changes to it and pods are not automatically restarted when you rotate the value. Use
 a tool like [Reloader](https://github.com/stakater/Reloader) to watch the Secret, or trigger a
