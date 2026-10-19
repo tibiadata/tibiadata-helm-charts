@@ -14,7 +14,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout Code
-        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 #v7.0.1
+        uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
 
       - name: Get current version
         id: get_version
@@ -22,14 +22,14 @@ jobs:
           echo "version=$(yq eval '.version' charts/${{ github.event.client_payload.chart_name }}/Chart.yaml)" >> $GITHUB_OUTPUT
 
       - name: Increment Semantic Version
-        uses: christian-draeger/increment-semantic-version@18746485477492fd90f2664f8470b34d9208fa17 #1.2.3
+        uses: christian-draeger/increment-semantic-version@18746485477492fd90f2664f8470b34d9208fa17 # 1.2.3
         id: bump_version
         with:
           current-version: ${{ steps.get_version.outputs.version }}
           version-fragment: patch
 
       - name: Update Chart versions
-        uses: fjogeleit/yaml-update-action@dffe9a5223d84653c13374032382f6bb5de8e5ef #v0.17.0
+        uses: fjogeleit/yaml-update-action@dffe9a5223d84653c13374032382f6bb5de8e5ef # v0.17.0
         with:
           branch: bump/${{ github.event.client_payload.chart_name }}/${{ github.event.client_payload.release_version }}
           masterBranchName: ${{ github.event.repository.default_branch }}
