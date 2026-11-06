@@ -45,6 +45,26 @@ image:
 
 If neither tag or digest is specified, the `appVersion` of the chart is used as a default.
 
+### Deployment update strategy
+
+The chart leaves `strategy` empty by default, preserving the Kubernetes Deployment defaults.
+Set the strategy fields supported by Kubernetes to customize rollout behavior. For example,
+this configuration allows one extra Pod during an update, requires all desired Pods to be
+available before scaling down old Pods, and waits 15 seconds before considering a new Pod
+available:
+
+```yaml
+strategy:
+  type: RollingUpdate
+  rollingUpdate:
+    maxSurge: 1
+    maxUnavailable: 0
+minReadySeconds: 15
+```
+
+`strategy.type` can also be set to `Recreate` to stop existing Pods before creating replacements.
+`minReadySeconds` defaults to `0`.
+
 ### secret
 
 Reference an existing Kubernetes `Secret` for any sensitive values the app needs (e.g. an
