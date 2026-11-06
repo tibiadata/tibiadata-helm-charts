@@ -4,6 +4,12 @@
 
 replicaCount: 3
 
+# Deployment update strategy. An empty map preserves Kubernetes defaults.
+strategy: {}
+
+# Minimum time a new Pod must be ready before it is considered available.
+minReadySeconds: 0
+
 image:
   repository: ghcr.io/tibiadata/tibiadata-api-go
   pullPolicy: IfNotPresent
